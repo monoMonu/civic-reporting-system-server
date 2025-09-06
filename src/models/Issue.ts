@@ -3,7 +3,7 @@ import mongoose, { Schema, Document } from "mongoose";
 export interface IIssue extends Document {
   user: mongoose.Types.ObjectId;
   description: string;
-  imageUrl?: string;
+  imageUrl?: string[];
   latitude: number;
   longitude: number;
   category: "pothole" | "garbage" | "other";
@@ -17,7 +17,7 @@ const issueSchema = new Schema<IIssue>(
   {
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
     description: { type: String, required: true },
-    imageUrl: { type: String },
+    imageUrl: [{ type: String }],
     latitude: { type: Number, required: true },
     longitude: { type: Number, required: true },
     category: {
